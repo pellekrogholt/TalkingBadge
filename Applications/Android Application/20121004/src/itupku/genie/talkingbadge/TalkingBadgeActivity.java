@@ -96,7 +96,7 @@ public class TalkingBadgeActivity extends Activity {
 		setContentView(R.layout.main);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		bluetoothStatus = bluetoothCheck(false);
-
+		
 		// Log.d(TAG, "++ bindService ++");
 		batteryLevel();
 		final Intent intent = new Intent(this, PlayMusicService.class);
@@ -135,6 +135,7 @@ public class TalkingBadgeActivity extends Activity {
 			public void onClick(View view) {
 				NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 				nm.cancel(SPPService.ID_LED);
+				
 				appendMessage("Replay button is pressed");
 				Date curdate = new Date();
 				if (RepeatOne
@@ -296,10 +297,10 @@ public class TalkingBadgeActivity extends Activity {
 		};
 		mLocalBroadcastManager.registerReceiver(mReceiver, filter);
 
-		// for(int i=0;i<999999;i++){}
 		soundHistoryList = DataStorage.readSoundHistory();
 		if (soundHistoryList == null)
 			soundHistoryList = new LinkedList<String>();
+		
 		curReplyLocationInSoundHistory = soundHistoryList.size();
 		appendMessage("Turned on");
 	}
@@ -632,8 +633,8 @@ public class TalkingBadgeActivity extends Activity {
 	}
 
 	public void onBackPressed() {
-		// ÊµÏÖHome¼üĞ§¹û
-		// super.onBackPressed();Õâ¾ä»°Ò»¶¨Òª×¢µô,²»È»ÓÖÈ¥µ÷ÓÃÄ¬ÈÏµÄback´¦Àí·½Ê½ÁË
+		// å®ç°Homeé”®æ•ˆæœ
+		// super.onBackPressed();è¿™å¥è¯ä¸€å®šè¦æ³¨æ‰,ä¸ç„¶åˆå»è°ƒç”¨é»˜è®¤çš„backå¤„ç†æ–¹å¼äº†
 		Intent i = new Intent(Intent.ACTION_MAIN);
 		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		i.addCategory(Intent.CATEGORY_HOME);
@@ -653,7 +654,7 @@ public class TalkingBadgeActivity extends Activity {
 
 	public boolean onKeyDownback(int keyCode, KeyEvent event) {
 		super.onKeyDown(keyCode, event);
-		// »ñÈ¡ÊÖ»úµ±Ç°ÒôÁ¿Öµ
+		// è·å–æ‰‹æœºå½“å‰éŸ³é‡å€¼
 		AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 		float volume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 		float max = audioManager.getStreamMaxVolume(AudioManager.STREAM_SYSTEM);

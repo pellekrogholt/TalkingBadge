@@ -39,14 +39,15 @@ public final class R {
     public static final class id {
         public static final int answerLayout=0x7f060000;
         public static final int answertext=0x7f060002;
-        public static final int bluetoothbutton=0x7f06001b;
+        public static final int bluetoothbutton=0x7f06001c;
         public static final int deletebutton=0x7f06000c;
         public static final int loginButton=0x7f060016;
         public static final int loginpasswordtext=0x7f060014;
         public static final int loginusernametext=0x7f060012;
         public static final int loginwelcometext=0x7f060011;
         public static final int mainLayout=0x7f06000f;
-        public static final int messagetext=0x7f06001a;
+        public static final int messagetext=0x7f06001b;
+        public static final int noLoginButton=0x7f060018;
         public static final int number0=0x7f06000d;
         public static final int number1=0x7f060003;
         public static final int number2=0x7f060004;
@@ -57,16 +58,16 @@ public final class R {
         public static final int number7=0x7f060009;
         public static final int number8=0x7f06000a;
         public static final int number9=0x7f06000b;
-        public static final int numberbutton=0x7f06001c;
+        public static final int numberbutton=0x7f06001d;
         public static final int password=0x7f060015;
-        public static final int qrbutton=0x7f06001d;
+        public static final int qrbutton=0x7f06001e;
         public static final int registButton=0x7f060017;
         public static final int relativeLayout1=0x7f060001;
-        public static final int replaybutton=0x7f060018;
+        public static final int replaybutton=0x7f060019;
         public static final int scrollView=0x7f060010;
         public static final int submitanswerbutton=0x7f06000e;
         public static final int username=0x7f060013;
-        public static final int volumebutton=0x7f060019;
+        public static final int volumebutton=0x7f06001a;
     }
     public static final class layout {
         public static final int answer=0x7f030000;
@@ -111,8 +112,17 @@ public final class R {
         public static final int malehappyen=0x7f040022;
         public static final int matches=0x7f040023;
         public static final int office=0x7f040024;
-        public static final int power_off_alert=0x7f040025;
-        public static final int soundhistory=0x7f040026;
+        public static final int ping=0x7f040025;
+        public static final int power_off_alert=0x7f040026;
+        public static final int soundhistory=0x7f040027;
+        public static final int tb175bdfd3ebe90de946884e83362a8984=0x7f040028;
+        public static final int tb1b995552fc67b8d30c96ca360ef81ea3=0x7f040029;
+        public static final int tb3b628526652bba26bf95e862434cd0cc=0x7f04002a;
+        public static final int tb5f2084f9c5c76cad75b4aa2582f3bf3a=0x7f04002b;
+        public static final int tb77f302d29f37db4b91c21bd6279f8d2f=0x7f04002c;
+        public static final int tb8d396e895790acb381593186bf750ce5=0x7f04002d;
+        public static final int tba80f0a5815f2666cfa190c774b04df33=0x7f04002e;
+        public static final int tbd026f87313ecd058a46212fabbbd8795=0x7f04002f;
     }
     public static final class string {
         public static final int app_name=0x7f050001;

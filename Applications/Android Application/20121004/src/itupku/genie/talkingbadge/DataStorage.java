@@ -374,6 +374,34 @@ public class DataStorage extends Service {
 					output.write(buf, 0, len);
 				}
 				
+				/* note: quick fix for adding some new messages
+				 * we use the id from talkingbadge-server / client but android dont like numbers as ids for R.raw.id
+				 * so its added tb<some id> but we like the final file name to be the same
+				 */ 
+				RawAndroidFile rawFiles[]  = {
+					new RawAndroidFile(R.raw.tbd026f87313ecd058a46212fabbbd8795, "d026f87313ecd058a46212fabbbd8795.mp3"),
+					new RawAndroidFile(R.raw.tba80f0a5815f2666cfa190c774b04df33, "a80f0a5815f2666cfa190c774b04df33.mp3"),
+					new RawAndroidFile(R.raw.tb1b995552fc67b8d30c96ca360ef81ea3, "1b995552fc67b8d30c96ca360ef81ea3.mp3"),
+					new RawAndroidFile(R.raw.tb5f2084f9c5c76cad75b4aa2582f3bf3a, "5f2084f9c5c76cad75b4aa2582f3bf3a.mp3"),
+					new RawAndroidFile(R.raw.tb3b628526652bba26bf95e862434cd0cc, "3b628526652bba26bf95e862434cd0cc.mp3"),
+					new RawAndroidFile(R.raw.tb77f302d29f37db4b91c21bd6279f8d2f, "77f302d29f37db4b91c21bd6279f8d2f.mp3"),
+					new RawAndroidFile(R.raw.tb8d396e895790acb381593186bf750ce5, "8d396e895790acb381593186bf750ce5.mp3"),
+					new RawAndroidFile(R.raw.tb175bdfd3ebe90de946884e83362a8984, "175bdfd3ebe90de946884e83362a8984.mp3"),
+					new RawAndroidFile(R.raw.ping, "ping.mp3")
+				};
+				
+				for (RawAndroidFile rawFile: rawFiles ) {
+					dest = new File(tbDir.getAbsolutePath(), rawFile.getFileName());
+					dest.deleteOnExit();
+					dest.createNewFile();
+					input = getResources().openRawResource(rawFile.getRawId());
+					output = new FileOutputStream(dest);
+					buf = new byte[1024];
+					while ((len = input.read(buf)) > 0) {
+						output.write(buf, 0, len);
+					}
+				}
+				
 				if (!matchFile.exists()) {
 					matchFile.createNewFile();
 					input = getResources().openRawResource(R.raw.matches);
@@ -589,4 +617,23 @@ public class DataStorage extends Service {
 		} else
 			return false;
 	}
+	
+	
+	private class RawAndroidFile {
+		private int rawId;
+		private String fileName;
+		RawAndroidFile(int rawId, String fileName) {
+			this.rawId=rawId;
+			this.fileName=fileName;
+		}
+		public int getRawId() {
+			return this.rawId;
+		}
+		public String getFileName(){
+			return this.fileName;
+		}
+	}
+	
 }
+
+

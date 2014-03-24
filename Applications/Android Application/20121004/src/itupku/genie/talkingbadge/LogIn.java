@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class LogIn extends Activity {
+	private static Button noLoginButton = null;
 	private static Button loginButton = null;
 	private static Button registButton = null;
 	private static EditText usernameText = null;
@@ -36,6 +37,7 @@ public class LogIn extends Activity {
 		setContentView(R.layout.login);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+		noLoginButton = (Button) findViewById(R.id.noLoginButton);
 		loginButton = (Button) findViewById(R.id.loginButton);
 		registButton = (Button) findViewById(R.id.registButton);
 		usernameText = (EditText) findViewById(R.id.username);
@@ -43,6 +45,30 @@ public class LogIn extends Activity {
 		final Intent intentDS = new Intent(this, DataStorage.class);
 		startService(intentDS);
 
+		noLoginButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				if (mBluetoothAdapter == null) {
+					Toast.makeText(LogIn.this, "Bluetooth is not available",
+							Toast.LENGTH_LONG).show();
+
+				}
+				if (!mBluetoothAdapter.isEnabled()) {
+					Toast.makeText(LogIn.this,
+							"Please enable Bluetooth before log in",
+							Toast.LENGTH_LONG).show();
+					Intent discoverableIntent = new Intent(
+							BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+					discoverableIntent.putExtra(
+							BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 0);
+					startActivity(discoverableIntent);
+				} else {
+					// skipp login and go directly to the TalkingBadgeActivity
+					Intent answerIntent = new Intent(LogIn.this,TalkingBadgeActivity.class);
+					startActivity(answerIntent);
+				}
+			}
+		});
+		
 		// final Intent intentSensor = new Intent(this, SensorService.class);
 		// startService(intentSensor);
 		loginButton.setOnClickListener(new View.OnClickListener() {

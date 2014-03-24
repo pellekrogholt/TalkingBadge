@@ -6,7 +6,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
 import android.app.Notification;
@@ -16,7 +18,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
@@ -195,10 +196,22 @@ public class SPPService extends Service {
 				}
 			else if (command[1].equals("PLAYSOUND"))
 				try {
+					
+					Log.d(TAG, "command: " + command.toString());
+					
 					if (command.length != 3)
 						return "BAD COMMAND";
 					else {
-						File file = DataStorage.findFile(command[2]);
+												
+						Log.d(TAG, "DataStorage.ListFile(): " + DataStorage.ListFile());
+
+						// note: quick fix
+						String fileName = command[2].replace("\n", "").replace("\"", "");
+						
+						File file = DataStorage.findFile(fileName);
+						
+						Log.d(TAG, "file: " + file);
+						
 						if (file == null) {
 							return "File not exist: " + command[2];
 						}
@@ -243,6 +256,30 @@ public class SPPService extends Service {
 					return "VOLUMECHECK FAILED";
 				}
 
+			else if (command[1].equals("VIBRATE"))
+				try {
+
+					Log.d(TAG, "command: " + command.toString());
+					
+					int vibrateTime = 500; 
+					if (command.length != 3)
+						vibrateTime = Integer.parseInt(command[2]);
+					
+					TalkingBadgeActivity.vibrate.vibrate(vibrateTime);	
+
+					File file = DataStorage.findFile("ping.mp3");
+					if (file != null) {
+						PlayMusicService.getMediaPlayer().reset();
+						PlayMusicService.getMediaPlayer().setDataSource(
+								file.getAbsolutePath());
+						PlayMusicService.getMediaPlayer().prepare();
+						PlayMusicService.getMediaPlayer().start();						
+					}
+					
+					return "VIBRATE "+vibrateTime+" MILLISECONDS";					
+				} catch (Exception e) {
+					return "VIBRATE FAILED";
+				}
 			else if (command[1].equals("VIBRATIONCHECK"))
 				try {
 					if (command.length != 2)
@@ -426,7 +463,7 @@ public class SPPService extends Service {
 		Notification notification = new Notification();
 		// notification.ledARGB = 0xff00ff00; //
 		notification.defaults = Notification.DEFAULT_LIGHTS;
-		// ’‚¿Ô «—’…´£¨Œ“√«ø…“‘≥¢ ‘∏ƒ±‰£¨¿Ì¬€…œ0xFF0000 «∫Ï…´£¨0x00FF00 «¬Ã…´
+		// ËøôÈáåÊòØÈ¢úËâ≤ÔºåÊàë‰ª¨ÂèØ‰ª•Â∞ùËØïÊîπÂèòÔºåÁêÜËÆ∫‰∏ä0xFF0000ÊòØÁ∫¢Ëâ≤Ôºå0x00FF00ÊòØÁªøËâ≤
 		// notification.flags = Notification.FLAG_SHOW_LIGHTS;
 		// notification.ledOnMS = 100;
 		// notification.ledOffMS = 100;
