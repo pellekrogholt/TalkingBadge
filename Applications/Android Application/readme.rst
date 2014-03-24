@@ -4,7 +4,7 @@
 
 This is a simple modified version that makes it:
 
-- possible to use app with no login (because lots of logic / setup is done Logi activity we keep this one).
+- possible to use app with no login (because lots of logic / setup is done in the "Logi activity" we keep this one for now).
   
 - send vibrate command.
 
