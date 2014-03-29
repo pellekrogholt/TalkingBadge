@@ -505,23 +505,26 @@ public class TalkingBadgeActivity extends Activity {
 									dialog.cancel();
 								}
 							}).setTitle("Scan result");
-		} else if (i == DIALOG_DOWNLOADBTFTP_ID) {
-			builder.setMessage(
-					"You need to download Bluetooth File Transfer, check OPP service to be \"Start at boot\", and uncheck \"Stop when close\"!")
-					.setCancelable(false)
-					.setPositiveButton("Yes",
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int id) {
-									Uri uri = Uri
-											.parse("market://search?q=pname:"
-													+ "it.medieval.blueftp");
-									Intent intent = new Intent(
-											Intent.ACTION_VIEW, uri);
-									startActivity(intent);
-								}
-							}).setTitle("Need Bluetooth File Transfer");
 		}
+		/* we like to use the app without the Bluetooth File Transfer */
+//		
+//		 else if (i == DIALOG_DOWNLOADBTFTP_ID) {
+//			builder.setMessage(
+//					"You need to download Bluetooth File Transfer, check OPP service to be \"Start at boot\", and uncheck \"Stop when close\"!")
+//					.setCancelable(false)
+//					.setPositiveButton("Yes",
+//							new DialogInterface.OnClickListener() {
+//								public void onClick(DialogInterface dialog,
+//										int id) {
+//									Uri uri = Uri
+//											.parse("market://search?q=pname:"
+//													+ "it.medieval.blueftp");
+//									Intent intent = new Intent(
+//											Intent.ACTION_VIEW, uri);
+//									startActivity(intent);
+//								}
+//							}).setTitle("Need Bluetooth File Transfer");
+//		}
 
 		AlertDialog alert = builder.create();
 		return alert;
