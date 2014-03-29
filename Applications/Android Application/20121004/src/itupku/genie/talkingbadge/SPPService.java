@@ -225,7 +225,8 @@ public class SPPService extends Service {
 								.equals(TalkingBadgeActivity.VOLUME_SILENCE)) {
 							ledControl(true);
 						}
-						TalkingBadgeActivity.soundHistoryList.add(command[2]);
+						// ensure never to store file names with ""
+						TalkingBadgeActivity.soundHistoryList.add(fileName);
 						return "PLAYED " + command[2];
 					}
 				} catch (Exception e) {
