@@ -117,12 +117,14 @@ public final class R {
         public static final int soundhistory=0x7f040027;
         public static final int tb175bdfd3ebe90de946884e83362a8984=0x7f040028;
         public static final int tb1b995552fc67b8d30c96ca360ef81ea3=0x7f040029;
-        public static final int tb3b628526652bba26bf95e862434cd0cc=0x7f04002a;
-        public static final int tb5f2084f9c5c76cad75b4aa2582f3bf3a=0x7f04002b;
-        public static final int tb77f302d29f37db4b91c21bd6279f8d2f=0x7f04002c;
-        public static final int tb8d396e895790acb381593186bf750ce5=0x7f04002d;
-        public static final int tba80f0a5815f2666cfa190c774b04df33=0x7f04002e;
-        public static final int tbd026f87313ecd058a46212fabbbd8795=0x7f04002f;
+        public static final int tb283f1f0d404a9b6ed9aaa4834c6a76dc=0x7f04002a;
+        public static final int tb3b628526652bba26bf95e862434cd0cc=0x7f04002b;
+        public static final int tb4716fe02c09724385aa1e392ac49a936=0x7f04002c;
+        public static final int tb5f2084f9c5c76cad75b4aa2582f3bf3a=0x7f04002d;
+        public static final int tb77f302d29f37db4b91c21bd6279f8d2f=0x7f04002e;
+        public static final int tb8d396e895790acb381593186bf750ce5=0x7f04002f;
+        public static final int tba80f0a5815f2666cfa190c774b04df33=0x7f040030;
+        public static final int tbd026f87313ecd058a46212fabbbd8795=0x7f040031;
     }
     public static final class string {
         public static final int app_name=0x7f050001;
